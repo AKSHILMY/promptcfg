@@ -12,11 +12,21 @@ class PromptBuilder:
 
         for part in self.config.prompts:
             if self._should_include(part, active_tags):
+                for var_def in part.variables:
+                    if var_def.name not in variables and var_def.default is not None:
+                        variables[var_def.name] = var_def.default
+
+                self._validate_variables(part, variables)
                 template = Template(part.text)
                 rendered_text = template.render(variables)
                 parts.append(rendered_text)
 
         return "\n\n".join(parts)
+
+    def _validate_variables(self, part, variables):
+        for var_def in part.variables:
+            if var_def.required and var_def.name not in variables:
+                raise ValueError(f"Missing required variable '{var_def.name}' for prompt '{part.id}'")
 
     def _should_include(self, part, active_tags):
         if part.default:

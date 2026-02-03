@@ -1,17 +1,33 @@
 import yaml
 from dataclasses import dataclass
-from typing import List, Optional
+from typing import List, Optional, Any
+
+@dataclass
+class VariableDefinition:
+    name: str
+    description: Optional[str] = None
+    required: bool = True
+    default: Any = None
 
 @dataclass
 class PromptPart:
     id: str
     text: str
+    variables: List[VariableDefinition] = None
     tags: List[str] = None
     default: bool = False
 
     def __post_init__(self):
         if self.tags is None:
             self.tags = []
+        if self.variables is None:
+            self.variables = []
+        else:
+             self.variables = [v if isinstance(v, VariableDefinition) else VariableDefinition(**v) for v in self.variables]
+        
+        for var in self.variables:
+            if not var.required and var.default is None:
+                raise ValueError(f"Variable '{var.name}' in prompt '{self.id}' is optional but has no default value.")
 
 @dataclass
 class PromptConfig:

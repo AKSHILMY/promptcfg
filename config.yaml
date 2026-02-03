@@ -10,6 +10,17 @@ prompts:
     text: |
       You are interacting with {{ user_name }}, who is identified as a {{ user_level }} user.
       Current Project: {{ project_name }}
+    variables:
+      - name: "user_name"
+        description: "The name of the user"
+        required: true
+      - name: "user_level"
+        description: "The experience level of the user (e.g. beginner, expert)"
+        required: false
+        default: "intermediate"
+      - name: "project_name"
+        description: "The name of the current project"
+        required: true
     default: true
 
   - id: "coding_general"
@@ -44,6 +55,9 @@ prompts:
       - Show, don't just tell.
       - Employ literary devices like metaphors and similes.
       - Tone: {{ writing_tone }}
+    variables:
+      - name: "writing_tone"
+        required: true
     tags: ["writing", "creative"]
 
   - id: "technical_writing"

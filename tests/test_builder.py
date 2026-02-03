@@ -26,5 +26,20 @@ class TestBuilder(unittest.TestCase):
         prompt = self.builder.build(tags=[], variables={})
         self.assertIn("Hello ", prompt)
 
+    def test_default_variable_value(self):
+        self.config.prompts.append(
+            PromptPart(id="default_test", text="Value: {{ val }}", variables=[{"name": "val", "required": False, "default": "DefaultValue"}], tags=["def"])
+        )
+        prompt = self.builder.build(tags=["def"], variables={})
+        self.assertIn("Value: DefaultValue", prompt)
+
+    def test_missing_required_variable_no_default(self):
+        self.config.prompts.append(
+            PromptPart(id="required_test", text="{{ necessary }}", variables=[{"name": "necessary", "required": True}], tags=["req"])
+        )
+        with self.assertRaises(ValueError) as cm:
+            self.builder.build(tags=["req"], variables={})
+        self.assertIn("Missing required variable 'necessary'", str(cm.exception))
+
 if __name__ == '__main__':
     unittest.main()
