@@ -39,14 +39,13 @@ class PromptConfig:
         with open(path, 'r') as f:
             data = yaml.safe_load(f)
         
-        from .ids import PromptID
-        
-        valid_ids = PromptID.all()
         prompts = []
+        seen_ids = set()
         for p in data.get('prompts', []):
             part = PromptPart(**p)
-            if part.id not in valid_ids:
-                raise ValueError(f"Invalid prompt ID: '{part.id}'. Allowed IDs are defined in PromptID.")
+            if part.id in seen_ids:
+                raise ValueError(f"Duplicate prompt ID found in config: '{part.id}'. IDs must be unique.")
+            seen_ids.add(part.id)
             prompts.append(part)
             
         return cls(version=data.get('version', '1.0'), prompts=prompts)

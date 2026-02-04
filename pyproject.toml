@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "prompt-config"
+version = "0.1.2"
+description = "A dynamic prompt building library with CLI support."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+keywords = ["prompt", "llm", "ai", "builder", "cli"]
+authors = [
+  {name = "Akeel Ahmed", email = "akshilmy.19+pip@gmail.com" }
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "PyYAML",
+    "Jinja2"
+]
+
+[project.urls]
+"Homepage" = "https://github.com/AKSHILMY/prompter"
+"Bug Tracker" = "https://github.com/AKSHILMY/prompter/issues"
+
+[project.scripts]
+prompter = "prompter.cli:main"
+
+[tool.setuptools]
+packages = ["prompter"]

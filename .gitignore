@@ -106,3 +106,7 @@ dmypy.json
 .idea/
 .vscode/
 *.swp
+.agent/*
+
+#CUSTOM
+release.sh
