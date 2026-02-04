@@ -1,7 +1,7 @@
 import unittest
 import os
 import yaml
-from prompter.config import PromptConfig
+from promptcfg.config import PromptConfig
 
 class TestCustomConfig(unittest.TestCase):
     def test_custom_ids_allowed(self):

@@ -1,6 +1,6 @@
 import unittest
-from prompter.builder import PromptBuilder as Builder
-from prompter.config import PromptConfig, PromptPart
+from promptcfg.builder import PromptBuilder as Builder
+from promptcfg.config import PromptConfig, PromptPart
 
 class TestDynamicBuilder(unittest.TestCase):
     def setUp(self):

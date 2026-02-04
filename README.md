@@ -7,7 +7,7 @@ A dynamic prompt building library for LLM applications. It allows you to define 
 Requires Python >= 3.12.
 
 ```bash
-pip install prompter
+pip install prompt-config
 ```
 
 ## Development Setup
@@ -25,25 +25,25 @@ pip install -e .
 Initialize a new configuration:
 
 ```bash
-prompter init
+promptcfg init
 ```
 
-This creates a `prompter.yaml` file in your current directory.
+This creates a `promptcfg.yaml` file in your current directory.
 
 Build a prompt from the CLI:
 
 ```bash
-prompter build --tags python,web --vars user=Alice
+promptcfg build --tags python,web --vars user=Alice
 ```
 
 ### Python API
 
 ```python
-from prompter.config import PromptConfig
-from prompter.builder import PromptBuilder
+from promptcfg.config import PromptConfig
+from promptcfg.builder import PromptBuilder
 
 # Load config
-config = PromptConfig.load("prompter.yaml")
+config = PromptConfig.load("promptcfg.yaml")
 
 # Create builder
 builder = PromptBuilder(config)

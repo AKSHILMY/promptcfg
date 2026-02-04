@@ -1,11 +1,11 @@
 import argparse
 import sys
 import os
-from prompter.config import PromptConfig
-from prompter.builder import PromptBuilder
+from promptcfg.config import PromptConfig
+from promptcfg.builder import PromptBuilder
 
 def init_command(args):
-    target_file = "prompter.yaml"
+    target_file = "promptcfg.yaml"
     if os.path.exists(target_file) and not args.force:
         print(f"Error: {target_file} already exists. Use --force to overwrite.", file=sys.stderr)
         sys.exit(1)
@@ -74,12 +74,12 @@ def main():
     subparsers = parser.add_subparsers(dest='command', help='Available commands')
 
     
-    parser_init = subparsers.add_parser('init', help='Initialize a new prompter configuration')
+    parser_init = subparsers.add_parser('init', help='Initialize a new promptcfg configuration')
     parser_init.add_argument('--force', action='store_true', help='Overwrite existing config file')
 
     
     parser_build = subparsers.add_parser('build', help='Build a prompt')
-    parser_build.add_argument('--config', default='prompter.yaml', help='Path to configuration file')
+    parser_build.add_argument('--config', default='promptcfg.yaml', help='Path to configuration file')
     parser_build.add_argument('--tags', default='', help='Comma-separated list of tags to activate')
     parser_build.add_argument('--vars', default='', help='Comma-separated list of key=value variables')
     parser_build.add_argument('--include-ids', default='', help='Comma-separated list of IDs to explicitly include')

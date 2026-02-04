@@ -2,7 +2,7 @@ import unittest
 import yaml
 import tempfile
 import os
-from prompter.config import PromptConfig
+from promptcfg.config import PromptConfig
 class TestConfigValidation(unittest.TestCase):
     def test_valid_ids(self):
         with tempfile.NamedTemporaryFile(mode='w', suffix='.yaml', delete=False) as tmp:

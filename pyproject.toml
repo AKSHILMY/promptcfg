@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "prompt-config"
-version = "0.1.3"
+version = "0.1.4"
 description = "A dynamic prompt building library with CLI support."
 readme = "README.md"
 requires-python = ">=3.11"
@@ -30,7 +30,7 @@ dependencies = [
 "Bug Tracker" = "https://github.com/AKSHILMY/prompter/issues"
 
 [project.scripts]
-prompter = "prompter.cli:main"
+promptcfg = "promptcfg.cli:main"
 
 [tool.setuptools]
-packages = ["prompter"]
+packages = ["promptcfg"]
