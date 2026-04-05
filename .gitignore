@@ -110,3 +110,5 @@ dmypy.json
 
 #CUSTOM
 release.sh
+
+venv*/

@@ -69,6 +69,18 @@ def build_command(args):
         print(f"Error: {e}", file=sys.stderr)
         sys.exit(1)
 
+def dashboard_command(args, extra_args):
+    try:
+        import streamlit.web.cli as stcli
+    except ImportError:
+        print("Error: Streamlit is required to run the dashboard.", file=sys.stderr)
+        print("Install it optionally via: pip install prompt-config[dash]", file=sys.stderr)
+        sys.exit(1)
+    
+    app_path = os.path.join(os.path.dirname(__file__), "dashboard", "app.py")
+    sys.argv = ["streamlit", "run", app_path] + extra_args
+    sys.exit(stcli.main())
+
 def main():
     parser = argparse.ArgumentParser(description='Prompter: Dynamic Prompt Builder')
     subparsers = parser.add_subparsers(dest='command', help='Available commands')
@@ -87,17 +99,16 @@ def main():
     parser_build.add_argument('--exclude-tags', default='', help='Comma-separated list of tags to exclude')
     parser_build.add_argument('--list-prompts', action='store_true', help='List all available prompts and exit')
 
-    
-    
-    
-    
-    
-    args = parser.parse_args()
+    parser_dash = subparsers.add_parser('dashboard', help='Launch the interactive web dashboard')
+
+    args, unknown = parser.parse_known_args()
 
     if args.command == 'init':
         init_command(args)
     elif args.command == 'build':
         build_command(args)
+    elif args.command == 'dashboard':
+        dashboard_command(args, unknown)
     else:
         parser.print_help()
 

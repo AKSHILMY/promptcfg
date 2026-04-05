@@ -1,0 +1,233 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+    --bg-primary: #0e1117;
+    --bg-card: #1a1d24;
+    --bg-card-hover: #1f2229;
+    --border: #2a2d35;
+    --border-accent: #667eea;
+    --accent-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --accent-green: #00d4aa;
+    --accent-orange: #ffb347;
+    --accent-red: #ff6b6b;
+    --text-primary: #f0f0f0;
+    --text-secondary: #a0a4b0;
+    --text-muted: #6b7080;
+    --radius: 12px;
+    --shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+}
+
+html, body, [class*="css"] {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* ===== Main Header ===== */
+.main-header {
+    background: var(--accent-gradient);
+    padding: 2rem 2.5rem;
+    border-radius: 16px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 8px 40px rgba(102, 126, 234, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+.main-header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 300px;
+    height: 300px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 50%;
+}
+.main-header h1 {
+    color: #fff;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: -0.5px;
+}
+.main-header p {
+    color: rgba(255,255,255,0.75);
+    margin: 0.4rem 0 0;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+/* ===== Prompt Cards ===== */
+.prompt-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.2rem 1.4rem;
+    margin-bottom: 0.4rem;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.prompt-card:hover {
+    border-color: var(--border-accent);
+    background: var(--bg-card-hover);
+    box-shadow: 0 4px 20px rgba(102, 126, 234, 0.1);
+    transform: translateY(-1px);
+}
+.prompt-id {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    font-family: 'JetBrains Mono', monospace;
+}
+.prompt-preview {
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    line-height: 1.5;
+    margin-top: 4px;
+}
+
+/* ===== Metrics ===== */
+[data-testid="stMetric"] {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.8rem 1rem;
+}
+[data-testid="stMetricValue"] {
+    font-weight: 700;
+}
+
+/* ===== Tabs ===== */
+.stTabs [data-baseweb="tab-list"] {
+    gap: 4px;
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 4px;
+    border: 1px solid var(--border);
+}
+.stTabs [data-baseweb="tab"] {
+    border-radius: 10px;
+    padding: 8px 20px;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+.stTabs [aria-selected="true"] {
+    background: var(--accent-gradient) !important;
+    color: #fff !important;
+}
+
+/* ===== Sidebar ===== */
+section[data-testid="stSidebar"] {
+    border-right: 1px solid var(--border);
+}
+section[data-testid="stSidebar"] .stMarkdown h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+}
+
+/* ===== Forms ===== */
+[data-testid="stForm"] {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+}
+
+/* ===== Buttons ===== */
+.stButton > button[kind="primary"],
+.stButton > button[data-testid="stBaseButton-primary"] {
+    background: var(--accent-gradient);
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    transition: all 0.2s ease;
+}
+.stButton > button[kind="primary"]:hover,
+.stButton > button[data-testid="stBaseButton-primary"]:hover {
+    box-shadow: 0 4px 20px rgba(102, 126, 234, 0.35);
+    transform: translateY(-1px);
+}
+
+/* ===== Text Areas / Inputs ===== */
+.stTextArea textarea {
+    font-family: 'JetBrains Mono', monospace !important;
+    font-size: 0.85rem;
+    border-radius: 10px;
+    border-color: var(--border);
+}
+.stTextInput input {
+    border-radius: 10px;
+    border-color: var(--border);
+}
+
+/* ===== Expanders ===== */
+[data-testid="stExpander"] {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 0.5rem;
+}
+
+/* ===== Code blocks ===== */
+.stCode, pre {
+    border-radius: 10px !important;
+}
+
+/* ===== Empty State ===== */
+.empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--text-muted);
+}
+.empty-state .icon {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    opacity: 0.6;
+}
+.empty-state .title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+/* ===== Stat Card ===== */
+.stat-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    text-align: center;
+}
+.stat-card .value {
+    font-size: 2rem;
+    font-weight: 700;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.stat-card .label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 0.3rem;
+}
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+}
+
+/* ===== Dataframe ===== */
+[data-testid="stDataFrame"] {
+    border-radius: var(--radius);
+    overflow: hidden;
+}

@@ -1,4 +1,4 @@
 include README.md
 include LICENSE
-recursive-include promptcfg *.yaml *.j2
+recursive-include promptcfg *.yaml *.j2 *.css
 exclude release.sh
