@@ -1,0 +1,12 @@
+[package]
+name = "promptcfg-core"
+version = "0.1.5"
+edition = "2021"
+
+[lib]
+name = "promptcfg_core"
+crate-type = ["cdylib"]
+
+[dependencies]
+pyo3 = { version = "0.20.2", features = ["extension-module"] }
+minijinja = "1.0.12"
