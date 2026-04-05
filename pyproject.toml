@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "prompt-config"
-version = "0.1.6"
+version = "0.1.7"
 description = "A dynamic prompt building library with CLI support."
 readme = "README.md"
 requires-python = ">=3.11"
@@ -36,4 +36,7 @@ dashboard = ["streamlit>=1.30.0", "pandas", "streamlit-sortables"]
 promptcfg = "promptcfg.cli:main"
 
 [tool.setuptools]
-packages = ["promptcfg"]
+packages = ["promptcfg", "promptcfg.dashboard"]
+
+[tool.setuptools.package-data]
+"promptcfg.dashboard" = ["*"]
